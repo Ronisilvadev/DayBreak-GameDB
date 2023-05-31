@@ -1,0 +1,21 @@
+#!/bin/bash
+#create by yaoyao
+
+DBNAME=daybreak_steam_1
+DBUSER=dayb
+DBPWD=daybpass
+BKPATH=/home/lmzg/server/daybreakdatabak
+SQLFILENAME=daybreak_104001.sql
+DBHOST=192.168.34.167
+
+CURPWD=`pwd`
+mkdir -p $BKPATH
+cd $BKPATH
+
+if [ -z $DBPWD ]; then
+  mysql -f -u$DBUSER -h$DBHOST $DBNAME < $SQLFILENAME
+else
+  mysql -f -u$DBUSER -p$DBPWD -h$DBHOST $DBNAME < $SQLFILENAME
+fi
+
+cd $CURPWD
